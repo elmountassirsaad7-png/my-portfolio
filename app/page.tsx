@@ -4,54 +4,70 @@ import { SkillsShowcase } from "@/components/skills-showcase"
 export default function Page() {
   return (
     <main className="min-h-screen bg-[#f0f0e8]">
-      {/* Hero Section */}
-      <section className="container mx-auto px-6 py-16 lg:py-24">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
-          <div className="space-y-6">
-            <p className="text-xs font-bold tracking-widest text-teal-700 uppercase">
+      <section className="container mx-auto px-4 py-12 lg:px-8 lg:py-16">
+        <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
+          <div className="space-y-5">
+            <p className="text-[10px] font-bold tracking-[0.14em] text-teal-700 uppercase">
               Junior Cybersecurity Analyst
             </p>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1a1a1a] leading-tight">
-              Analyst | SOC{" "}
-              <span className="text-[#1a2f2f]">&bull;</span> DevSecOps{" "}
-              <span className="text-[#1a2f2f]">&bull;</span> Infrastructure Security
+            <h1 className="text-[42px] font-bold leading-[1.05] text-[#0f1720] sm:text-[52px]">
+              Analyst | SOC <span className="text-[#0c4f4f]">&bull;</span>
+              <br />
+              DevSecOps <span className="text-[#0c4f4f]">&bull;</span>
+              <br />
+              Infrastructure Security
             </h1>
-            <p className="text-[#5a5a5a] text-lg leading-relaxed max-w-xl">
+            <p className="max-w-xl text-sm leading-7 text-[#4f5b5f]">
               I help teams secure systems from detection to deployment: SIEM/XDR,
               intrusion detection, secure network architecture, CI/CD security,
               vulnerability assessment, and automation.
             </p>
-            
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-3 pt-4">
-              <button className="px-5 py-2.5 bg-teal-700 text-white text-sm font-medium rounded-lg hover:bg-teal-800 transition-colors">
+
+            <div className="flex flex-wrap gap-2 pt-2">
+              <a
+                className="rounded-md bg-teal-700 px-3 py-1.5 text-[11px] font-semibold text-white transition-colors hover:bg-teal-800"
+                href="/cv/EN-SOC-ELMOUNTASSIR-SAAD.pdf"
+                download
+              >
                 Download SOC CV
-              </button>
-              <button className="px-5 py-2.5 bg-teal-700 text-white text-sm font-medium rounded-lg hover:bg-teal-800 transition-colors">
+              </a>
+              <a
+                className="rounded-md bg-teal-700 px-3 py-1.5 text-[11px] font-semibold text-white transition-colors hover:bg-teal-800"
+                href="/cv/EN-DEVSECOPS-ELMOUNTASSIR-SAAD.pdf"
+                download
+              >
                 Download DevSecOps/AppSec CV
-              </button>
-              <button className="px-5 py-2.5 bg-teal-700 text-white text-sm font-medium rounded-lg hover:bg-teal-800 transition-colors">
+              </a>
+              <a
+                className="rounded-md bg-teal-700 px-3 py-1.5 text-[11px] font-semibold text-white transition-colors hover:bg-teal-800"
+                href="/cv/EN-INFRASEC-ELMOUNTASSIR-SAAD.pdf"
+                download
+              >
                 Download Infrastructure CV
-              </button>
-              <button className="px-5 py-2.5 bg-teal-700 text-white text-sm font-medium rounded-lg hover:bg-teal-800 transition-colors">
+              </a>
+              <a
+                className="rounded-md bg-teal-700 px-3 py-1.5 text-[11px] font-semibold text-white transition-colors hover:bg-teal-800"
+                href="/cv/EN-CONSCYB-ELMOUNTASSIR-SAAD.pdf"
+                download
+              >
                 Download Cybersecurity CV
-              </button>
-              <button className="px-5 py-2.5 border-2 border-[#1a2f2f] text-[#1a2f2f] text-sm font-medium rounded-lg hover:bg-[#1a2f2f] hover:text-white transition-colors">
+              </a>
+              <a
+                className="rounded-md border border-[#1a2f2f] px-3 py-1.5 text-[11px] font-semibold text-[#1a2f2f] transition-colors hover:bg-[#1a2f2f] hover:text-white"
+                href="mailto:elmountassirsaad7@gmail.com"
+              >
                 Contact Me
-              </button>
+              </a>
             </div>
           </div>
 
-          {/* Right Content - Terminal */}
-          <div className="flex justify-center lg:justify-end">
+          <div className="flex justify-center lg:justify-end lg:pt-4">
             <SecurityTerminal />
           </div>
         </div>
       </section>
 
-      {/* Skills Section */}
-      <section className="container mx-auto px-6 py-16 border-t border-[#d8d8d0]">
+      <section className="container mx-auto border-t border-[#d8d8d0] px-6 py-16">
         <div className="max-w-2xl mx-auto">
           <SkillsShowcase />
         </div>

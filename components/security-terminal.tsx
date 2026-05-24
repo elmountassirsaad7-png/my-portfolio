@@ -1,227 +1,132 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 
-interface TerminalLine {
-  label: string
-  value: string
-  color: string
-}
-
-const securityLogs: TerminalLine[] = [
-  { label: "status", value: "Wazuh active-response enabled", color: "text-amber-400" },
-  { label: "mitre", value: "credential access mapped", color: "text-amber-400" },
-  { label: "nids", value: "Suricata custom rules loaded", color: "text-amber-400" },
-  { label: "cti", value: "AbuseIPDB + VirusTotal enrichment", color: "text-amber-400" },
-  { label: "siem", value: "Real-time correlation active", color: "text-emerald-400" },
-  { label: "ids", value: "Anomaly detection: ONLINE", color: "text-emerald-400" },
-]
+const bootMessage = "$ type a command."
 
 const commands: Record<string, string[]> = {
   help: [
     "Available commands:",
-    "  whoami    - About me",
-    "  skills    - Technical skills",
-    "  tools     - Security tools I use",
-    "  certs     - Certifications",
-    "  contact   - Get in touch",
-    "  clear     - Clear terminal",
+    "  whoami",
+    "  skills",
+    "  certs",
+    "  contact",
+    "  clear",
   ],
   whoami: [
     "Saad El Mountassir",
     "Junior Cybersecurity Analyst",
     "SOC | DevSecOps | Infrastructure Security",
-    "",
-    "Passionate about securing systems from detection",
-    "to deployment with a focus on automation.",
   ],
   skills: [
-    "Technical Skills:",
-    "  [################] SIEM/XDR (Wazuh, Elastic)",
-    "  [##############  ] Network Security (pfSense, Suricata)",
-    "  [###############-] DevSecOps (GitLab CI/CD, Docker)",
-    "  [##############  ] Threat Intelligence & Hunting",
-    "  [#############   ] Incident Response & Forensics",
-  ],
-  tools: [
-    "Security Tools:",
-    "  > Wazuh SIEM/XDR",
-    "  > Suricata IDS/IPS",
-    "  > pfSense Firewall",
-    "  > Nmap, Nessus, OpenVAS",
-    "  > Wireshark, tcpdump",
-    "  > GitLab CI/CD Security",
-    "  > Docker Security",
+    "Core: SOC L1, SIEM/XDR, NIDS, DevSecOps",
+    "Tools: Wazuh, Suricata, pfSense, GitLab CI/CD",
   ],
   certs: [
-    "Certifications:",
-    "  [+] ISC2 Certified in Cybersecurity (CC)",
-    "  [+] Cisco Networking Basics",
-    "  [+] Cisco Network Defense",
-    "  [+] ISO/IEC 27001 Associate",
+    "ISC2 Certified in Cybersecurity (CC)",
+    "Cisco Networking Basics",
+    "Cisco Network Defense",
+    "ISO/IEC 27001 Associate",
   ],
   contact: [
-    "Get in touch:",
-    "  Email: elmountassirsaad@gmail.com",
-    "  LinkedIn: linkedin.com/in/saad-el-mountassir",
-    "  GitHub: github.com/elmountassirsaad7",
+    "Email: elmountassirsaad7@gmail.com",
+    "LinkedIn: linkedin.com/in/saad-el-mountassir",
+    "GitHub: github.com/elmountassirsaad7-png",
   ],
 }
 
 export function SecurityTerminal() {
-  const [displayedLines, setDisplayedLines] = useState<TerminalLine[]>([])
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [isTyping, setIsTyping] = useState(true)
+  const [bootText, setBootText] = useState("")
   const [input, setInput] = useState("")
-  const [history, setHistory] = useState<{ type: "command" | "output"; text: string }[]>([])
-  const [isInteractive, setIsInteractive] = useState(false)
+  const [history, setHistory] = useState<Array<{ type: "command" | "output"; text: string }>>([])
   const inputRef = useRef<HTMLInputElement>(null)
-  const terminalRef = useRef<HTMLDivElement>(null)
+  const panelRef = useRef<HTMLDivElement>(null)
 
-  // Typing animation for initial logs
   useEffect(() => {
-    if (currentIndex < securityLogs.length && !isInteractive) {
-      const timer = setTimeout(() => {
-        setDisplayedLines(prev => [...prev, securityLogs[currentIndex]])
-        setCurrentIndex(prev => prev + 1)
-      }, 600)
-      return () => clearTimeout(timer)
-    } else if (currentIndex >= securityLogs.length) {
-      setIsTyping(false)
-    }
-  }, [currentIndex, isInteractive])
+    let index = 0
+    const timer = setInterval(() => {
+      index += 1
+      setBootText(bootMessage.slice(0, index))
+      if (index >= bootMessage.length) clearInterval(timer)
+    }, 45)
+    return () => clearInterval(timer)
+  }, [])
 
-  // Auto-scroll terminal
   useEffect(() => {
-    if (terminalRef.current) {
-      terminalRef.current.scrollTop = terminalRef.current.scrollHeight
+    if (panelRef.current) {
+      panelRef.current.scrollTop = panelRef.current.scrollHeight
     }
-  }, [displayedLines, history])
+  }, [history])
 
-  const handleCommand = (cmd: string) => {
-    const trimmedCmd = cmd.trim().toLowerCase()
-    setHistory(prev => [...prev, { type: "command", text: cmd }])
+  const runCommand = (raw: string) => {
+    const cmd = raw.trim().toLowerCase()
+    if (!cmd) return
 
-    if (trimmedCmd === "clear") {
+    if (cmd === "clear") {
       setHistory([])
-      setDisplayedLines([])
-      setCurrentIndex(0)
-      setIsInteractive(false)
-      setIsTyping(true)
       return
     }
 
-    const response = commands[trimmedCmd]
-    if (response) {
-      response.forEach((line, i) => {
-        setTimeout(() => {
-          setHistory(prev => [...prev, { type: "output", text: line }])
-        }, i * 50)
-      })
-    } else {
-      setHistory(prev => [
+    const output = commands[cmd]
+    if (!output) {
+      setHistory((prev) => [
         ...prev,
-        { type: "output", text: `Command not found: ${trimmedCmd}` },
-        { type: "output", text: 'Type "help" for available commands' },
+        { type: "output", text: `Command not found: ${cmd}` },
+        { type: "output", text: 'Type "help" to list commands.' },
       ])
+      return
     }
+
+    setHistory((prev) => [...prev, ...output.map((line) => ({ type: "output" as const, text: line }))])
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (input.trim()) {
-      handleCommand(input)
-      setInput("")
-    }
-  }
-
-  const activateInteractive = () => {
-    setIsInteractive(true)
-    inputRef.current?.focus()
+    const value = input.trim()
+    if (!value) return
+    setHistory((prev) => [...prev, { type: "command", text: value }])
+    runCommand(value)
+    setInput("")
   }
 
   return (
-    <div 
-      className="w-full max-w-lg rounded-lg overflow-hidden bg-[#1a2f2f] border border-[#2a4a4a] shadow-2xl"
-      onClick={activateInteractive}
+    <div
+      className="w-full max-w-[460px] overflow-hidden rounded-md border border-[#274344] bg-[#11272a] shadow-2xl"
+      onClick={() => inputRef.current?.focus()}
     >
-      {/* Terminal Header */}
-      <div className="flex items-center gap-2 px-4 py-3 bg-[#152525] border-b border-[#2a4a4a]">
+      <div className="flex items-center gap-2 border-b border-[#274344] bg-[#0f2022] px-4 py-3">
         <div className="flex gap-1.5">
-          <div className="w-3 h-3 rounded-full bg-[#3b5a5a] hover:bg-red-500 transition-colors cursor-pointer" />
-          <div className="w-3 h-3 rounded-full bg-[#3b5a5a] hover:bg-yellow-500 transition-colors cursor-pointer" />
-          <div className="w-3 h-3 rounded-full bg-[#3b5a5a] hover:bg-green-500 transition-colors cursor-pointer" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#35595a]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#35595a]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#35595a]" />
         </div>
-        <span className="text-xs text-[#5a8a8a] ml-2 font-mono">security@soc-workstation</span>
-        <div className="ml-auto flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span className="text-xs text-emerald-400 font-mono">LIVE</span>
-        </div>
+        <span className="ml-2 font-mono text-[10px] text-[#5f8f90]">security@soc-workstation</span>
+        <span className="ml-auto font-mono text-[10px] text-[#13d59f]">● LIVE</span>
       </div>
 
-      {/* Terminal Body */}
-      <div 
-        ref={terminalRef}
-        className="p-4 font-mono text-sm h-[280px] overflow-y-auto scrollbar-thin scrollbar-thumb-[#2a4a4a] scrollbar-track-transparent"
-      >
-        {/* Initial security logs */}
-        {!isInteractive && displayedLines.map((line, i) => (
-          <div key={i} className="flex gap-4 mb-2 animate-fadeIn">
-            <span className={`${line.color} min-w-[60px]`}>{line.label}</span>
-            <span className="text-[#8ab4b4]">{line.value}</span>
-          </div>
+      <div ref={panelRef} className="h-[270px] overflow-y-auto p-4 font-mono text-[12px] text-[#90bec0]">
+        <p className="mb-1 text-[#5f8f90]">{">"}Interactive mode enabled. Type "help" for commands.</p>
+        <p className="mb-3 text-[#19d6a3]">
+          {bootText}
+          <span className="animate-pulse">_</span>
+        </p>
+
+        {history.map((entry, index) => (
+          <p key={`${entry.type}-${index}`} className={entry.type === "command" ? "text-[#d3f0ee]" : "text-[#8db8ba]"}>
+            {entry.type === "command" ? `$ ${entry.text}` : entry.text}
+          </p>
         ))}
 
-        {/* Typing indicator */}
-        {isTyping && !isInteractive && (
-          <div className="flex items-center gap-2 text-[#5a8a8a]">
-            <span className="animate-pulse">_</span>
-          </div>
-        )}
-
-        {/* Interactive mode */}
-        {isInteractive && (
-          <>
-            <div className="text-[#5a8a8a] mb-2">
-              {'>'} Interactive mode enabled. Type &quot;help&quot; for commands.
-            </div>
-            {history.map((item, i) => (
-              <div key={i} className="mb-1">
-                {item.type === "command" ? (
-                  <div className="flex gap-2">
-                    <span className="text-emerald-400">$</span>
-                    <span className="text-[#c8e0e0]">{item.text}</span>
-                  </div>
-                ) : (
-                  <div className="text-[#8ab4b4] pl-4">{item.text}</div>
-                )}
-              </div>
-            ))}
-          </>
-        )}
-
-        {/* Command prompt hint */}
-        {!isTyping && !isInteractive && (
-          <div className="mt-4 text-[#5a8a8a] text-xs animate-fadeIn">
-            Click to enter interactive mode...
-          </div>
-        )}
-
-        {/* Interactive input */}
-        {isInteractive && (
-          <form onSubmit={handleSubmit} className="flex gap-2 mt-2">
-            <span className="text-emerald-400">$</span>
-            <input
-              ref={inputRef}
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              className="flex-1 bg-transparent text-[#c8e0e0] outline-none caret-emerald-400"
-              autoFocus
-              placeholder="type a command..."
-            />
-          </form>
-        )}
+        <form onSubmit={onSubmit} className="mt-3 flex items-center gap-2">
+          <span className="text-[#18d4a1]">$</span>
+          <input
+            ref={inputRef}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            className="w-full bg-transparent text-[#d3f0ee] outline-none"
+            placeholder="type a command..."
+          />
+        </form>
       </div>
     </div>
   )
