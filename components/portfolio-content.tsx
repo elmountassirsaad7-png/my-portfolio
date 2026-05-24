@@ -245,7 +245,7 @@ export function PortfolioContent() {
             <div className="min-w-0 flex-1">
               <span className="text-xs text-muted-foreground">Location</span>
               <p className="text-sm font-medium text-foreground">
-                Marrakech, Morocco - Open to remote, internship, junior roles
+                Marrakech, Morocco - Open to remote, hybrid, internship, or relocation opportunities
               </p>
             </div>
           </div>
