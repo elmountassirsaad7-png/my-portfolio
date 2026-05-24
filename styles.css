@@ -332,6 +332,12 @@ h3 {
   margin: 14px 0;
 }
 
+.impact {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
 .project-card ul,
 .tag-list {
   margin: 0;
@@ -408,6 +414,10 @@ time {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: #fff;
+}
+
+.cv-actions {
+  margin: 0 0 20px;
 }
 
 .contact-section {
