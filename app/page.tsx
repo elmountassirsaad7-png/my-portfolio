@@ -22,6 +22,9 @@ export default function Page() {
               intrusion detection, secure network architecture, CI/CD security,
               vulnerability assessment, and automation.
             </p>
+            <p className="max-w-2xl rounded-md border border-[#bcd3cc] bg-white px-3 py-2 text-xs font-medium text-[#1e3f40]">
+              Open to: SOC Analyst L1, DevSecOps/AppSec Internship, Infrastructure Security - Remote, France/Europe, Morocco, and international mobility.
+            </p>
 
             <div className="flex flex-wrap gap-2 pt-2">
               <a
@@ -67,13 +70,13 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="container mx-auto border-t border-[#d8d8d0] px-6 py-16">
-        <div className="max-w-2xl mx-auto">
+      <section className="container mx-auto border-t border-[#d8d8d0] px-6 py-12 lg:py-14">
+        <div className="mx-auto max-w-5xl">
           <SkillsShowcase />
         </div>
       </section>
 
-      <section className="container mx-auto px-6 py-16">
+      <section className="container mx-auto px-6 py-14 lg:py-16">
         <div className="max-w-4xl space-y-8">
           <div className="space-y-2">
             <p className="text-xs font-bold tracking-[0.14em] text-teal-700 uppercase">Selected Projects</p>
@@ -84,10 +87,11 @@ export default function Page() {
               <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-teal-700">SIEM / SOC Automation</p>
               <h3 className="mt-2 text-lg font-bold text-[#132127]">Global SI Security &amp; Wazuh Detection Lab</h3>
               <p className="mt-2 text-sm leading-6 text-[#4f5b5f]">
-                Built an end-to-end security environment with Wazuh SIEM/XDR, Suricata NIDS, pfSense segmentation, AWS, and alert automation through Telegram/Jira.
+                Built an end-to-end security environment with Wazuh SIEM/XDR, Suricata NIDS, pfSense segmentation, AWS, and alert automation through Telegram/Jira ticketing.
               </p>
               <p className="mt-3 border-t border-[#e3e7e3] pt-3 text-sm text-[#2c3b40]">
-                <strong>Impact:</strong> Improved detection coverage with MITRE ATT&amp;CK-mapped rules, automated enrichment, and active-response playbooks.
+                <strong>Impact:</strong>{" "}
+                Improved detection coverage with 8 custom MITRE ATT&amp;CK-mapped Wazuh rules, 9 KQL dashboard widgets in Azure Data Explorer, and 3 automated active-response actions (firewall-drop, host-deny, kill-process).
               </p>
             </article>
             <article className="rounded-lg border border-[#d8d8d0] bg-white p-5">
@@ -97,7 +101,8 @@ export default function Page() {
                 Implemented a DevSecOps flow with GitLab CI/CD, Docker, Semgrep, OWASP ZAP, Trivy, Gitleaks, and Retire.js.
               </p>
               <p className="mt-3 border-t border-[#e3e7e3] pt-3 text-sm text-[#2c3b40]">
-                <strong>Impact:</strong> Shifted security checks left to catch vulnerabilities, dependency risks, and secret exposure earlier.
+                <strong>Impact:</strong>{" "}
+                Shifted security checks left to catch vulnerabilities, dependency risks, and secret exposure earlier.
               </p>
             </article>
             <article className="rounded-lg border border-[#d8d8d0] bg-white p-5">
@@ -107,7 +112,8 @@ export default function Page() {
                 Designed segmented infrastructure with VLANs, inter-VLAN routing, NAT, ACLs, DMZ, VPN, IDS/IPS, and packet analysis.
               </p>
               <p className="mt-3 border-t border-[#e3e7e3] pt-3 text-sm text-[#2c3b40]">
-                <strong>Impact:</strong> Reduced lateral movement risk with validated segmentation and tested control paths.
+                <strong>Impact:</strong>{" "}
+                Reduced lateral movement risk with validated segmentation and tested control paths.
               </p>
             </article>
             <article className="rounded-lg border border-[#d8d8d0] bg-white p-5">
@@ -117,7 +123,8 @@ export default function Page() {
                 Performed configuration analysis, OpenVAS/Lynis scans, and hardening aligned with ANSSI and DGSSI recommendations.
               </p>
               <p className="mt-3 border-t border-[#e3e7e3] pt-3 text-sm text-[#2c3b40]">
-                <strong>Impact:</strong> Strengthened baseline host security and improved repeatable audit readiness.
+                <strong>Impact:</strong>{" "}
+                Strengthened baseline host security and improved repeatable audit readiness.
               </p>
             </article>
           </div>
@@ -161,26 +168,55 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="container mx-auto px-6 py-16">
+      <section className="container mx-auto px-6 py-14 lg:py-16">
         <div className="max-w-4xl space-y-8">
           <div className="space-y-2">
             <p className="text-xs font-bold tracking-[0.14em] text-teal-700 uppercase">Target Roles</p>
-            <h2 className="text-3xl font-bold text-[#0f1720]">Roles I Am Actively Targeting</h2>
+            <h2 className="text-3xl font-bold text-[#0f1720]">Role Focus</h2>
           </div>
-          <ul className="flex flex-wrap gap-2">
-            {[
-              "Junior SOC Analyst",
-              "Cyber Defense Analyst",
-              "DevSecOps Intern",
-              "Application Security Intern",
-              "Infrastructure Security Analyst",
-              "Junior Cybersecurity Consultant",
-            ].map((role) => (
-              <li key={role} className="rounded-md border border-[#bcd3cc] bg-white px-3 py-2 text-sm font-medium text-[#1d3a3a]">
-                {role}
-              </li>
-            ))}
-          </ul>
+          <div className="grid gap-3 md:grid-cols-3">
+            <article className="rounded-md border border-[#bcd3cc] bg-white p-4">
+              <p className="text-xs font-bold uppercase tracking-[0.08em] text-teal-700">Primary target</p>
+              <p className="mt-1 text-sm font-medium text-[#1d3a3a]">Junior SOC Analyst / Cyber Defense Analyst</p>
+            </article>
+            <article className="rounded-md border border-[#bcd3cc] bg-white p-4">
+              <p className="text-xs font-bold uppercase tracking-[0.08em] text-teal-700">Secondary target</p>
+              <p className="mt-1 text-sm font-medium text-[#1d3a3a]">DevSecOps / AppSec Intern</p>
+            </article>
+            <article className="rounded-md border border-[#bcd3cc] bg-white p-4">
+              <p className="text-xs font-bold uppercase tracking-[0.08em] text-teal-700">Additional fit</p>
+              <p className="mt-1 text-sm font-medium text-[#1d3a3a]">Infrastructure Security / Cybersecurity Consultant Junior</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#e8ede7]">
+        <div className="container mx-auto px-6 py-14 lg:py-16">
+          <div className="max-w-4xl space-y-5">
+            <div className="space-y-2">
+              <p className="text-xs font-bold tracking-[0.14em] text-teal-700 uppercase">Proof of Skills</p>
+              <h2 className="text-3xl font-bold text-[#0f1720]">Certifications and Practical Readiness</h2>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <article className="rounded-md border border-[#cfdcd5] bg-white p-4">
+                <p className="text-sm font-semibold text-[#132127]">ISC2 Certified in Cybersecurity (CC)</p>
+                <p className="mt-1 text-xs text-[#4f5b5f]">Core security operations and risk foundations.</p>
+              </article>
+              <article className="rounded-md border border-[#cfdcd5] bg-white p-4">
+                <p className="text-sm font-semibold text-[#132127]">Cisco Introduction to Cybersecurity</p>
+                <p className="mt-1 text-xs text-[#4f5b5f]">Cybersecurity fundamentals and defensive mindset.</p>
+              </article>
+              <article className="rounded-md border border-[#cfdcd5] bg-white p-4">
+                <p className="text-sm font-semibold text-[#132127]">Cisco Networking Basics</p>
+                <p className="mt-1 text-xs text-[#4f5b5f]">Networking essentials for monitoring and secure architecture.</p>
+              </article>
+              <article className="rounded-md border border-[#cfdcd5] bg-white p-4">
+                <p className="text-sm font-semibold text-[#132127]">Cisco Network Defense</p>
+                <p className="mt-1 text-xs text-[#4f5b5f]">Threat detection and defensive control practices.</p>
+              </article>
+            </div>
+          </div>
         </div>
       </section>
 
