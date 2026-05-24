@@ -99,22 +99,6 @@ export function SkillsShowcase() {
           </div>
         ))}
       </div>
-
-      {/* Stats Row */}
-      <div className="mt-8 grid grid-cols-3 gap-4">
-        <StatCard label="Incidents Handled" value="150+" />
-        <StatCard label="Rules Written" value="50+" />
-        <StatCard label="Systems Secured" value="20+" />
-      </div>
-    </div>
-  )
-}
-
-function StatCard({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="text-center p-4 rounded-lg bg-gradient-to-br from-[#1a2f2f] to-[#2a4a4a] text-white">
-      <div className="text-2xl font-bold text-teal-400">{value}</div>
-      <div className="text-xs text-[#8ab4b4] mt-1">{label}</div>
     </div>
   )
 }
