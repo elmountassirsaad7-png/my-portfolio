@@ -3,9 +3,8 @@ import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Saad El Mountassir | Cybersecurity Portfolio',
-  description: 'Junior Cybersecurity Analyst specializing in SOC, DevSecOps, and Infrastructure Security',
-  generator: 'v0.app',
+  title: 'Saad Elmountassir | Cybersecurity CV',
+  description: 'Academic CV-style cybersecurity portfolio for SOC, DevSecOps, infrastructure security, and AppSec roles',
   icons: {
     icon: [
       {
@@ -31,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="bg-[#f0f0e8]">
+    <html lang="en" className="bg-[#f7f8fb]">
       <body className="font-sans antialiased">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
